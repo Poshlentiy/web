@@ -9,7 +9,7 @@ const path = require("path");
 const fs = require("fs");
 const router = require("./routes/index");
 
-//hjhjhв
+//hjhjhвd
 
 const start = async () => {
   try {
