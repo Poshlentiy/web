@@ -9,6 +9,8 @@ const path = require("path");
 const fs = require("fs");
 const router = require("./routes/index");
 
+//hjhjh
+
 const start = async () => {
   try {
     await sequelize.authenticate();
