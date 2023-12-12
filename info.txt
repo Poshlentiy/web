@@ -1,0 +1,15 @@
+You are registred succesfully!
+
+username: sejgkb
+password: slkgns
+train: Fistfighting
+master: Van Darkholme
+med: none
+email: q@l.r
+calendar: 2023-12-22
+shift: Day
+traintype: Personal
+promo: none
+sendAd: on
+subject: Central Park Avenue, 3
+image: eoxl98go.bmp
