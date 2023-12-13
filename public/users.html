@@ -58,13 +58,18 @@
 
     }
 
-    td:last-child {
-      background-color: darkred;
+    td:last-child, td:nth-child(5) {
+      background-color: rgb(207, 130, 13);
       color: #FFF;
       cursor: pointer;
       font-weight: bold;
       text-decoration: underline
     }
+
+    td:last-child{
+      background-color: darkred;
+    }
+    
 
 
     /*  button:hover {
@@ -102,6 +107,7 @@
         <th>Email</th>
         <th>Date</th>
         <th></th>
+        <th></th>
       </thead>
       <tbody>
       </tbody>
@@ -133,7 +139,7 @@
       .then((res) => res.json())
       .then((response) => {
         console.log(response);
-        const user = response.map(us => ({ id: us.id, username: us.username, email: us.email, date: us.calendar, delete: 'Remove' }))
+        const user = response.map(us => ({ id: us.id, username: us.username, email: us.email, date: us.calendar, edit: 'Edit', delete: 'Remove' }))
         console.log(user);
         for (const res in user) {
           const rowElement = document.createElement("tr");
@@ -147,15 +153,41 @@
         }
 
         for (let i = 1; i < table.rows.length; i++) {
-          table.rows[i].onclick = async function () {
+          table.rows[i].cells[4].onclick = async function () {
             console.log(table.rows[i].cells[0]);
+            const info = { id: table.rows[i].cells[0].textContent };
+            console.log(info);
+            await fetch("/updateuser", {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(info)
+              }).then((res) => {
 
+if (res.status == 200) {
+                  location.href = ("http://localhost:5000/form");
+     // document.getElementById("calendar").value = response["calendar"];
+    //  document.getElementByName("username").value = response["username"];
+    //  document.getElementById("train").textContent = response["train"];
+    //  document.getElementById("master").textContent = response["master"];
+    //  document.getElementById("med").textContent = response["med"];
+    //  document.getElementById("email").textContent = response["email"];
+    //  document.getElementById("shift").textContent = response["shift"];
+    //  document.getElementById("traintype").textContent =
+    //    response["traintype"];
+    //  if (response["promo"]) {
+     //   document.getElementById("promo").textContent = response["promo"];
+     // } else document.getElementById("promo").textContent = "none";
+    //  document.getElementById("adress").textContent = response["subject"];
           }
-        }
-
+        })
+      }
+    }
+          
+      
+        
 
         for (let i = 1; i < table.rows.length; i++) {
-          table.rows[i].cells[4].onclick = async function () {
+          table.rows[i].cells[5].onclick = async function () {
             const info = { id: table.rows[i].cells[0].textContent };
             console.log(typeof table.rows[i].cells[0].textContent);
             console.log(info);
@@ -174,7 +206,7 @@
                   }
 
                   if (user == null) {
-                    alert('Заказов не найдено.');
+                    alert('пользователей не найдено.');
                   }
                   else {
                     // Перебираем полученные данные и создаем строки в таблице для каждой записи

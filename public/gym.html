@@ -115,8 +115,8 @@
       <ul>
          <p>
             <li><label>Name: </label><input required class='text_input' name="username"
-                  placeholder='Enter your Name here'></li>
-            <li><label>SMS-Password: </label><input required type='password' name="password" class='text_input'></li>
+                  placeholder='Enter your Name here' id = 'username'></li>
+            <li><label>SMS-Password: </label><input required type='password' name="password" id='password' class='text_input'></li>
          </p>
       </ul>
 
@@ -139,25 +139,25 @@
 
          <li>
             <label>Medical contraindications:</label>
-            <textarea class='text_input' name="med" placeholder='Add info here'></textarea>
+            <textarea class='text_input' id = 'med' name="med" placeholder='Add info here'></textarea>
          </li>
 
          <li><label>Email:</label>
-            <input type="email" name="email" class='text_input'>
+            <input type="email" id = 'email' name="email" class='text_input'>
          </li>
 
          <li><label>Date:</label>
-            <input type="date" class='text_input' name="calendar" min="2022-23-02">
+            <input type="date" id="date" class='text_input' name="calendar" min="2022-23-02">
          </li>
       </ul>
       <p>
-         <input type="radio" name="shift" value="Day" checked> Day shift
-         <input type="radio" name="shift" value="Night"> Night shift
+         <input type="radio" id='shift' name="shift" value="Day" checked> Day shift
+         <input type="radio" id='shift1' name="shift" value="Night"> Night shift
          <br>
       </p>
       <p>
-         <input type="radio" name="traintype" value="Personal" checked> Personal training
-         <input type="radio" name="traintype" value="Group"> Group training
+         <input type="radio" id = 'pers' name="traintype" value="Personal" checked> Personal training
+         <input type="radio" id = 'group' name="traintype" value="Group"> Group training
       </p>
 
       <p>
@@ -174,7 +174,7 @@
       </p>
 
       <li><label>Adress:</label>
-         <select required name="subject" size="5" class='text_input'>
+         <select required name="subject" id = 'adress' size="5" class='text_input'>
             <option class='text_input opt' value="WallStreet, 15/2">WallStreet, 15/2</option>
             <option class='text_input opt' value="Central Park Avenue, 3">Central Park Avenue, 3</option>
             <option class='text_input opt' value="Alabam Street, 4/1">Alabam Street, 4/1</option>
@@ -221,6 +221,35 @@
             }
          }
       });
+
+    fetch("/updateuser1")
+    .then((res) => res.json())
+    .then((response) => {
+      if(response != undefined){
+         document.getElementById('form_wrap').action = '/updateuser2';
+      document.getElementById("date").value = response["calendar"];
+      document.getElementById("username").value = response["username"];
+      document.getElementById('password').value = response["password"];
+      document.getElementById("selectTraining").value = response["train"];
+      document.getElementById("selectMaster").value = response["master"];
+      document.getElementById("med").value = response["med"];
+      document.getElementById("email").value = response["email"];
+      document.getElementById("email").readOnly = true;
+      if (response['shift'] = 'Day')
+      document.getElementById("shift").checked = true;
+      else document.getElementById("shift1").checked = true;
+      if (response['traintype'] = 'Personal')
+      document.getElementById("pers").checked = true;
+      else document.getElementById("group").checked = true;
+     //// if (response["promo"]) {
+     //   document.getElementById("promo").textContent = response["promo"];
+     // } else document.getElementById("promo").textContent = "none";
+      document.getElementById("adress").value = response["subject"];
+      // document.getElementById("img").src = "http://localhost:5000/" + response["fName"];
+     
+   } else
+      console.log("ничего");
+ });
    </script>
 
 </body>

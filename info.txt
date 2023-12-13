@@ -1,15 +1,15 @@
 You are registred succesfully!
 
-username: dsfgdf
-password: dfgdfg
-train: Powerlifting
-master: Billy Herrington
+username: slbg
+password: swfklh
+train: Fistfighting
+master: Van Darkholme
 med: none
-email: fg@l.c
-calendar: 2023-12-28
-shift: Day
-traintype: Group
+email: r@j.r
+calendar: 2023-12-22
+shift: Night
+traintype: Personal
 promo: none
 sendAd: on
-subject: Central Park Avenue, 3
+subject: WallStreet, 15/2
 image: none

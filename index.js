@@ -82,6 +82,29 @@ app.post("/deleteuser", async (req, res) => {
   await models.User.destroy({ where: { id: id } });
   res.sendStatus(200);
 });
+let SearchUser = {};
+app.post("/updateuser", async (req, res) => {
+  
+  console.log(req.body);
+  const id = req.body.id;
+  console.log(id);
+  SearchUser = await models.User.findByPk(id);
+  console.log(SearchUser);
+  res.sendStatus(200);
+  //res.send(SearchUser);
+});
+let SearchedUser = {};
+app.get("/updateuser1", async (req, res) => {
+  
+  res.send(SearchUser);
+  SearchedUser = SearchUser
+  SearchUser = null;
+});
+
+app.post("/updateuser2", async (req, res) => {
+  models.User.update(req.body, {where:{ email: req.body.email}})
+  res.sendFile(__dirname + "/public/users.html");
+});
 
 app.get("/data", (req, res) => {
   res.send(reqData);
