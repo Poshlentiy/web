@@ -8,7 +8,7 @@ const User = sequelize.define("user", {
   train: { type: DataTypes.STRING, allowNull: false },
   master: { type: DataTypes.STRING, allowNull: false },
   med: { type: DataTypes.STRING, defaultValue: "none" },
-  email: { type: DataTypes.STRING, unique: true, allowNull: false },
+  email: { type: DataTypes.STRING, allowNull: false },
   calendar: { type: DataTypes.DATEONLY, defaultValue: Date.now() },
   shift: { type: DataTypes.STRING, defaultValue: "Day" },
   traintype: { type: DataTypes.STRING, defaultValue: "Personal" },

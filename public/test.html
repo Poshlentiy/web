@@ -13,7 +13,7 @@
       background-size: cover;
     }
 
-    div {
+    #forma {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -31,6 +31,7 @@
 
     }
 
+
     span {
       font-style: normal;
     }
@@ -47,10 +48,8 @@
 
     button {
       border-style: solid;
-      width: 50%;
       padding: 1px;
-      margin: 0 auto;
-
+      margin: 0 10%;
       /*коэффициент растягивания*/
       font-family: 'Gilroy';
       font-weight: bold;
@@ -64,7 +63,7 @@
 <body>
 
 
-  <div>
+  <div id="forma">
     <b>
       <h2>You are registred successfully!</h2>
     </b>
@@ -79,7 +78,11 @@
     <p>Promo: <span id="promo"></span></p>
     <p>Adress: <span id="adress"></span></p>
     <p><span><img id="img" /></span></p>
-    <button id='dbtn' name="base" class='text_input button'>Download blank file</button>
+    <div name="butdes">
+      <button type='submit' id='ubtn' name="base" class='text_input button'>Users list</button>
+      <button id='dbtn' name="base" class='text_input button'>Download blank file</button>
+      <button id='updbtn' name="base" class='text_input button'>Update info</button>
+    </div>
   </div>
 
 </body>
@@ -103,6 +106,14 @@
       URL.revokeObjectURL(url);
     })
   });
+
+  const usersBtn = document.querySelector('#ubtn').addEventListener('click', () => {
+    location.href = ("http://localhost:5000/users");
+  });
+
+
+
+
 
   fetch("/data")
     .then((res) => res.json())

@@ -14,7 +14,7 @@ const router = require("./routes/index");
 const start = async () => {
   try {
     await sequelize.authenticate();
-    await sequelize.sync();
+    await sequelize.sync(/*{ force: true }*/);
     app.listen(port, () => {
       console.log(`Server started at http://localhost:${port}`);
     });
@@ -87,8 +87,12 @@ app.get("/data", (req, res) => {
   res.send(reqData);
 });
 app.get("/users", async (req, res) => {
-  const Searchall = await models.User.findAll();
   // await models.User.destroy({ where: { id: 1 } });
+  res.sendFile("public/users.html", { root: __dirname });
+  // res.send(Searchall);
+});
+app.get("/usersList", async (req, res) => {
+  const Searchall = await models.User.findAll();
   res.send(Searchall);
 });
 app.get("/download", (req, res) => {

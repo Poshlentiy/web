@@ -66,6 +66,7 @@
       text-decoration: underline
     }
 
+
     /*  button:hover {
       background-color: #1e90ff;
       border-style: none;
@@ -147,9 +148,10 @@
 
         for (let i = 1; i < table.rows.length; i++) {
           table.rows[i].onclick = async function () {
-            console.log(table.rows[i].cells[0]); 
-          
-          }}
+            console.log(table.rows[i].cells[0]);
+
+          }
+        }
 
 
         for (let i = 1; i < table.rows.length; i++) {
@@ -164,23 +166,22 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(info)
               }).then((res) => {
-                 
+
                 if (res.status == 200) {
                   const rows = table.getElementsByTagName('tr');
                   while (rows.length > 1) {
-                  table.deleteRow(1);
-            }
+                    table.deleteRow(1);
+                  }
 
-            if(user == null)
-            {
-              alert('Заказов не найдено.');
-            }
-            else{
-              // Перебираем полученные данные и создаем строки в таблице для каждой записи
-              loadIntoTable("/users", document.querySelector("table"))
-              }
+                  if (user == null) {
+                    alert('Заказов не найдено.');
+                  }
+                  else {
+                    // Перебираем полученные данные и создаем строки в таблице для каждой записи
+                    loadIntoTable("/usersList", document.querySelector("table"))
+                  }
 
-                 // if(table.row.cells[0])
+                  // if(table.row.cells[0])
                 }
               })
             }
@@ -192,10 +193,10 @@
       })
   }
 
-  loadIntoTable("/users", document.querySelector("table"))
+  loadIntoTable("/usersList", document.querySelector("table"))
 
   //let table = document.querySelector("table");
-  
+
 
 </script>
 
